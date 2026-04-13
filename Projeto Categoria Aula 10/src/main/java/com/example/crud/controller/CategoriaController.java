@@ -19,7 +19,7 @@ public class CategoriaController {
     @GetMapping("/formulario")
     public String form(Model model) {
         model.addAttribute("categoria", new Categoria());
-        return "formCategoria"; // Tem que ser igual ao nome do arquivo sem o .html
+        return "formCategoria";
     }
 
     @GetMapping("/listar")
