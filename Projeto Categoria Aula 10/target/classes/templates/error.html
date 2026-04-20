@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Erro</title>
+    <style>
+        body { background: #121212; color: white; font-family: sans-serif; text-align: center; padding-top: 100px; }
+        .box { border: 1px solid red; display: inline-block; padding: 40px; border-radius: 10px; }
+        h1 { color: red; }
+    </style>
 </head>
 <body>
-    <h1>Ocorreu um erro</h1>
-    <p th:text="${message}"> Mensagem de erro</p>
-    <a href="/">Voltar</a>
+<div class="box">
+    <h1>⚠️ Erro</h1>
+    <p th:text="${message}">Algo deu errado.</p>
+    <a href="/" style="color: #00d1ff;">Voltar para o Início</a>
+</div>
 </body>
 </html>

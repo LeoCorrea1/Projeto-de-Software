@@ -1,42 +1,45 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Formulário de Produto</title>
+    <title>Formulário Produto</title>
+    <style>
+        body { background: #121212; color: white; font-family: sans-serif; padding: 20px; }
+        .container { max-width: 400px; background: #1d1d1d; padding: 20px; border-radius: 8px; }
+        input, select { width: 100%; padding: 8px; margin: 8px 0; background: #333; color: white; border: 1px solid #444; box-sizing: border-box; }
+        button { background: green; color: white; border: none; padding: 10px; width: 100%; cursor: pointer; font-weight: bold; }
+    </style>
 </head>
 <body>
-<h1>Cadastro de Produto</h1>
-<form method="POST" th:action="@{/produto/salvar}" th:object="${produto}">
-    <input type="hidden" th:field="*{id}">
+<div class="container">
+    <h2>Cadastro de Produto</h2>
+    <form method="POST" th:action="@{/produto/salvar}" th:object="${produto}">
+        <input type="hidden" th:field="*{id}">
 
-    <label>Nome:</label><br>
-    <input type="text" th:field="*{nome}"><br>
+        <label>Nome:</label>
+        <input type="text" th:field="*{nome}" required>
 
-    <label>Descrição:</label><br>
-    <input type="text" th:field="*{descricao}"><br>
+        <label>Categoria:</label>
+        <select th:field="*{categoria}" required>
+            <option value="">Selecione...</option>
+            <option th:each="cat : ${categorias}" th:value="${cat.id}" th:text="${cat.nome}"></option>
+        </select>
 
-    <label>Valor:</label><br>
-    <input type="number" step="0.01" th:field="*{valor}"><br>
+        <label>Descrição:</label>
+        <input type="text" th:field="*{descricao}">
 
-    <label>Quantidade:</label><br>
-    <input type="number" th:field="*{quantidade}"><br>
+        <label>Valor (R$):</label>
+        <input type="number" step="0.01" th:field="*{valor}" required>
 
-    <label>Imagem (URL):</label><br>
-    <input type="text" th:field="*{imagem}"><br>
+        <label>Quantidade:</label>
+        <input type="number" th:field="*{quantidade}" required>
 
-    <label>Categoria:</label><br>
-    <select th:field="*{categoria}" required>
-        <option value="">Selecione uma categoria</option>
-        <option th:each="cat : ${categorias}"
-                th:value="${cat.id}"
-                th:text="${cat.nome}">
-        </option>
-    </select><br><br>
+        <label>URL Imagem:</label>
+        <input type="text" th:field="*{imagem}">
 
-    <input type="reset" value="Limpar">
-    <input type="submit" value="Salvar Produto">
-</form>
-<br>
-<a href="/produto/listar">Voltar para Lista</a>
+        <button type="submit">Salvar Produto</button>
+        <a href="/produto/listar" style="display:block; text-align:center; margin-top:10px; color: #00d1ff;">Voltar</a>
+    </form>
+</div>
 </body>
 </html>

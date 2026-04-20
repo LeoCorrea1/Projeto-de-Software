@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>Formulário Categoria</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Categoria</title>
+    <style>
+        body { background: #121212; color: white; font-family: sans-serif; padding: 20px; }
+        form { background: #1d1d1d; padding: 20px; display: inline-block; border-radius: 5px; }
+        input { display: block; margin: 10px 0; padding: 8px; width: 250px; background: #333; color: white; border: 1px solid #444; }
+        button { background: #00d1ff; border: none; padding: 10px 20px; cursor: pointer; }
+    </style>
+</head>
 <body>
+<h2 th:text="${categoria.id == null ? 'Nova Categoria' : 'Editar Categoria'}"></h2>
 <form th:action="@{/categoria/salvar}" th:object="${categoria}" method="POST">
     <input type="hidden" th:field="*{id}">
     <label>Nome:</label>
-    <input type="text" th:field="*{nome}">
+    <input type="text" th:field="*{nome}" required>
     <button type="submit">Salvar</button>
+    <a href="/categoria/listar" style="color: #ccc; margin-left: 10px;">Cancelar</a>
 </form>
 </body>
 </html>
