@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        final BaseDados monitor = new BaseDados();
+        BaseDados monitor = new BaseDados();
         GeradorString gerador = new GeradorString();
         Random geradorTexto = new Random();
 
@@ -13,7 +13,7 @@ public class Main {
                     String Nome = gerador.NovosNomes[Sorteado];
                     monitor.realizarLeitura(Nome);
                     try {
-                        Thread.sleep(3000); // Região não crítica (tempo antes de ler de novo)
+                        Thread.sleep(2000);
                     } catch (InterruptedException e) {}
                 }
             }
@@ -25,17 +25,16 @@ public class Main {
                     String Nome = gerador.NovosNomes[Sorteado];
                     monitor.realizarLeitura(Nome);
                     try {
-                        Thread.sleep(3000); // Região não crítica (tempo antes de ler de novo)
+                        Thread.sleep(2000);
                     } catch (InterruptedException e) {}
                 }
             }
         });
         Thread threadEscritor = new Thread(new Runnable() {
             public void run() {
-
                 while (true) {
                     try {
-                        Thread.sleep(5000); // Região não crítica
+                        Thread.sleep(5000);
                     } catch (InterruptedException e) {}
 
                     int Sorteado = geradorTexto.nextInt(gerador.NovasEscritas.length);
